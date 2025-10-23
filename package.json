@@ -1,5 +1,5 @@
 {
-  "name": "lcf",
+  "name": "@acrylonitrilebutadienestyrene/lcf-js",
   "version": "0.7.0",
   "license": "MIT",
   "type": "module",
@@ -10,5 +10,8 @@
     "vite": "^7.1.12",
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-wasm": "^3.5.0"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

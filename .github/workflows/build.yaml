@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v5
+    - uses: dtolnay/rust-toolchain@stable
+    - uses: jetli/wasm-pack-action@v0.4.0
+    - uses: actions/setup-node@v6
+      with:
+        registry-url: 'https://npm.pkg.github.com'
+    - run: wasm-pack build rust -d ../pkg --release
+    - run: cargo run
+    - run: npm i -D
+    - run: npx vite build
+    - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
