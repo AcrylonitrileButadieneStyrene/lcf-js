@@ -20,10 +20,14 @@ jobs:
     - uses: actions/setup-node@v6
       with:
         registry-url: 'https://npm.pkg.github.com'
-    - run: wasm-pack build rust -d ../pkg --release
-    - run: cargo run
-    - run: npm i -D
-    - run: npx vite build
-    - run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: |
+        wasm-pack build rust -d ../pkg --release
+        cargo run
+        npm i -D
+        npx vite build
+        tar -xzf "$(npm pack)"
+    - uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: builds
+        publish_dir: ./package
