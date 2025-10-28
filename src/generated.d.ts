@@ -1,5 +1,5 @@
 // Automatically generated file, do not edit (changes made will be overwritten).
-// Created by <lcf-js>/rust/src/main.rs on 2025-10-23 17:03:31.334941221 UTC.
+// Created by <lcf-js>/rust/src/main.rs on 2025-10-28 01:24:33.996909749 UTC.
 
 export enum AnimationType {
 	Standing = 0,
@@ -16,6 +16,16 @@ export interface BGM {
 	volume: number;
 	tempo: number;
 	balance: number;
+}
+
+export interface ChipSet {
+	name: number[];
+	file: number[];
+	terrain: number[];
+	passability_lower: number[];
+	passability_upper: number[];
+	animation_type: number;
+	animation_speed: number;
 }
 
 export interface Command {
@@ -166,7 +176,7 @@ export type Lcf =
 	| { "SaveData": LcfSaveData }
 
 export interface LcfDataBase {
-	
+	chipsets: ChipSet[];
 }
 
 export interface LcfMapTree {
